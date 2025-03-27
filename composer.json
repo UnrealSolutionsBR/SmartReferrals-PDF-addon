@@ -3,8 +3,9 @@
     "description": "Addon para generar PDFs en formularios de Elementor con Dompdf.",
     "type": "wordpress-plugin",
     "require": {
-      "dompdf/dompdf": "^2.0"
-    },
+        "dompdf/dompdf": "^3.0",
+        "masterminds/html5": "^2.8"
+      },
     "autoload": {
       "psr-4": {
         "SR_PDF\\": "includes/"

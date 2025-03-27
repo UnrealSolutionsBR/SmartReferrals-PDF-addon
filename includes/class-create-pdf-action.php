@@ -18,7 +18,7 @@ class Create_PDF_Action extends Action_Base {
 	}
 
 	public function register_settings_section( $widget ) {
-		// Sin configuraciones por ahora
+		// No se requieren ajustes personalizados por ahora
 	}
 
 	public function run( $record, $ajax_handler ) {
@@ -33,6 +33,7 @@ class Create_PDF_Action extends Action_Base {
 
 		$html .= '</ul>';
 
+		// Configurar Dompdf
 		$options = new Options();
 		$options->set('defaultFont', 'DejaVu Sans');
 		$dompdf = new Dompdf($options);
@@ -40,7 +41,7 @@ class Create_PDF_Action extends Action_Base {
 		$dompdf->setPaper('A4', 'portrait');
 		$dompdf->render();
 
-		// Guardar PDF en /wp-content/uploads/
+		// Guardar el PDF en /wp-content/uploads/
 		$upload_dir = wp_upload_dir();
 		$filename = 'formulario_' . time() . '.pdf';
 		$upload_path = trailingslashit($upload_dir['basedir']) . $filename;
@@ -48,8 +49,10 @@ class Create_PDF_Action extends Action_Base {
 
 		file_put_contents($upload_path, $dompdf->output());
 
-		// Guardar la URL del PDF en la metadata
-		$record->add_meta( 'generated_pdf_url', $pdf_url );
+		// ✅ Pasar la URL al frontend usando AJAX de Elementor
+		$ajax_handler->add_response_data( 'meta', [
+			'generated_pdf_url' => $pdf_url
+		] );
 	}
 
 	public function on_export( $element ) {
