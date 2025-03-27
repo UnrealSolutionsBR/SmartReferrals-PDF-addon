@@ -1,10 +1,14 @@
 {
+    "name": "unreal/smart-referrals-pdf-addon",
+    "description": "Addon para generar PDFs en formularios de Elementor con Dompdf.",
+    "type": "wordpress-plugin",
     "require": {
-        "dompdf/dompdf": "^3.1"
+      "dompdf/dompdf": "^2.0"
     },
     "autoload": {
-        "psr-4": {
-            "SR_PDF\\": "includes/"
-        }
-    }    
-}
+      "psr-4": {
+        "SR_PDF\\": "includes/"
+      }
+    }
+  }
+  
