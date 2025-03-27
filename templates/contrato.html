@@ -9,48 +9,80 @@
       color: #222;
       line-height: 1.6;
     }
+
+    /* Numeración */
+    .page-number {
+      position: fixed;
+      top: 30px;
+      right: 40px;
+      font-size: 10px;
+      color: #999;
+    }
+
     header {
-      text-align: center;
+      display: flex;
+      align-items: center;
       border-bottom: 2px solid #ccc;
       margin-bottom: 20px;
+      gap: 20px;
     }
+
+    .logo-img {
+      width: 42px;
+      height: auto;
+    }
+
+    .header-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
     .logo {
       font-weight: bold;
-      font-size: 20px;
+      font-size: 18px;
       color: #555;
     }
+
     .subtitle {
-      font-size: 14px;
-      margin-top: 5px;
+      font-size: 12px;
+      margin-top: 2px;
     }
+
     h1 {
       text-align: center;
       font-size: 18px;
       margin: 30px 0 10px;
       text-transform: uppercase;
     }
+
     .info {
       margin-top: 10px;
       font-size: 14px;
     }
+
     .clausulas {
       margin-top: 30px;
     }
+
     .clausulas p {
       margin-bottom: 12px;
       font-size: 13px;
       text-align: justify;
     }
+
     .presupuesto-final {
       margin-top: 30px;
       background: #f7f7f7;
       padding: 15px;
       border: 1px solid #ccc;
     }
+
     .presupuesto-final strong {
       font-size: 16px;
       color: #000;
     }
+
     .footer {
       margin-top: 50px;
       padding-top: 10px;
@@ -63,13 +95,19 @@
 </head>
 <body>
 
+  <!-- Placeholder si se abre en navegador -->
+  <div class="page-number">Página {PAGE_NUM} de {PAGE_COUNT}</div>
+
   <header>
-    <img src="{{logo_url}}" width="150" style="margin-bottom: 15px;" alt="Logo Unreal Solutions">
-    <div class="logo">UNREAL SOLUTIONS</div>
-    <div class="subtitle">Agencia creativa digital - www.unrealsolutions.com.br</div>
+    <img src="{{logo_url}}" class="logo-img" alt="Logo Unreal Solutions">
+    <div class="header-text">
+      <div class="logo">UNREAL SOLUTIONS</div>
+      <div class="subtitle">Agencia creativa digital - www.unrealsolutions.com.br</div>
+    </div>
   </header>
 
-  <h1>Presupuesto N° {{presupuesto}}</h1>
+  <h1>PRESUPUESTO N° {{presupuesto}}</h1>
+
   <div class="info">
     <strong>Cliente:</strong> {{cliente}}<br>
     <strong>Servicio:</strong> {{servicio}}<br>
