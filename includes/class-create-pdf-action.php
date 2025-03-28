@@ -64,7 +64,9 @@ class Create_PDF_Action extends Action_Base {
 		$options->set('isRemoteEnabled', true);
 		$dompdf = new Dompdf($options);
 		$dompdf->loadHtml($html);
-		$dompdf->setPaper('A4', 'portrait');
+		$dompdf->setPaper([
+			0, 0, 595.28, 841.89 // tamaño A4 en puntos, sin márgenes
+		]);
 		$dompdf->render();
 
 		// 🧾 Agregar numeración de páginas
