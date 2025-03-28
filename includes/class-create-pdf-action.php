@@ -39,7 +39,7 @@ class Create_PDF_Action extends Action_Base {
 		$total    = $fields['total']['value'] ?? 'USD 0.00';
 
 		// 📸 Logo desde plugin
-		$logo_url = SR_PDF_ADDON_URL . 'assets/img/logo.png';
+		$logo_url = SR_PDF_ADDON_URL . 'assets/img/logo.svg';
 
 		// 📄 Cargar plantilla
 		$template_path = SR_PDF_ADDON_PATH . 'templates/contrato.html';
