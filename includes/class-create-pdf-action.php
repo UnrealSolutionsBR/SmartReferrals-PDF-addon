@@ -38,7 +38,7 @@ class Create_PDF_Action extends Action_Base {
 		$servicio = $fields['servicio']['value'] ?? 'Servicio no definido';
 		$total    = $fields['total']['value'] ?? 'USD 0.00';
 
-		// 📸 Logo desde plugin
+		// 📸 Logo
 		$logo_url = SR_PDF_ADDON_URL . 'assets/img/logo.svg';
 
 		// 📄 Cargar plantilla
@@ -62,31 +62,36 @@ class Create_PDF_Action extends Action_Base {
 		$options = new Options();
 		$options->set('defaultFont', 'DejaVu Sans');
 		$options->set('isRemoteEnabled', true);
+		$options->set('isHtml5ParserEnabled', true);
+		$options->set('isPhpEnabled', false);
+
+		// 🧱 Tamaño sin márgenes
+		$paper_width = 595.28; // A4 width in pt
+		$paper_height = 841.89; // A4 height in pt
 		$dompdf = new Dompdf($options);
+		$dompdf->setPaper([0, 0, $paper_width, $paper_height], 'portrait');
+
 		$dompdf->loadHtml($html);
-		$dompdf->setPaper([
-			0, 0, 595.28, 841.89 // tamaño A4 en puntos, sin márgenes
-		]);
 		$dompdf->render();
 
-		// 🧾 Agregar numeración de páginas
+		// 📄 Numeración de páginas
 		$canvas = $dompdf->get_canvas();
 		$canvas->page_script(function ($pageNumber, $pageCount, $canvas, $fontMetrics) {
 			$text = sprintf("Página %02d de %02d", $pageNumber, $pageCount);
 			$font = $fontMetrics->getFont('DejaVu Sans', 'normal');
 			$size = 10;
 			$width = $fontMetrics->getTextWidth($text, $font, $size);
-			$canvas->text($canvas->get_width() - $width - 40, 30, $text, $font, $size);
+			$canvas->text($canvas->get_width() - $width - 20, 30, $text, $font, $size);
 		});
 
-		// 💾 Guardar PDF
+		// 💾 Guardar archivo
 		$upload_dir = wp_upload_dir();
 		$filename = 'presupuesto_' . time() . '.pdf';
 		$upload_path = trailingslashit($upload_dir['basedir']) . $filename;
 		$pdf_url = trailingslashit($upload_dir['baseurl']) . $filename;
 		file_put_contents($upload_path, $dompdf->output());
 
-		// 📤 Enviar URL al frontend
+		// 📤 Respuesta
 		$ajax_handler->add_response_data('meta', [
 			'generated_pdf_url' => $pdf_url
 		]);

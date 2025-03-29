@@ -8,11 +8,15 @@
     }
 
     body {
-      font-family: DejaVu Sans, sans-serif;
-      padding: 0 20px 20px 20px;
       margin: 0;
+      padding: 0;
+      font-family: DejaVu Sans, sans-serif;
       color: #222;
       line-height: 1.6;
+    }
+
+    .wrapper {
+      padding: 20px;
     }
 
     header {
@@ -83,38 +87,38 @@
   </style>
 </head>
 <body>
+  <div class="wrapper">
+    <header>
+      <img src="{{logo_url}}" class="logo-img" alt="Logo Unreal Solutions">
+      <div class="header-text">
+        <div class="subtitle">Agencia creativa digital - www.unrealsolutions.com.br</div>
+      </div>
+    </header>
 
-  <header>
-    <img src="{{logo_url}}" class="logo-img" alt="Logo Unreal Solutions">
-    <div class="header-text">
-      <div class="subtitle">Agencia creativa digital - www.unrealsolutions.com.br</div>
+    <h1>PRESUPUESTO N° {{presupuesto}}</h1>
+
+    <div class="info">
+      <strong>Cliente:</strong> {{cliente}}<br>
+      <strong>Servicio:</strong> {{servicio}}<br>
+      <strong>Fecha:</strong> {{fecha}}
     </div>
-  </header>
 
-  <h1>PRESUPUESTO N° {{presupuesto}}</h1>
+    <div class="clausulas">
+      <p><strong>Primera.</strong> {{clausula1}}</p>
+      <p><strong>Segunda.</strong> {{clausula2}}</p>
+      <p><strong>Tercera.</strong> {{clausula3}}</p>
+    </div>
 
-  <div class="info">
-    <strong>Cliente:</strong> {{cliente}}<br>
-    <strong>Servicio:</strong> {{servicio}}<br>
-    <strong>Fecha:</strong> {{fecha}}
+    <div class="presupuesto-final">
+      <p><strong>TOTAL A PAGAR:</strong> {{total}}</p>
+      <p><strong>Tiempo estimado de entrega:</strong> {{tiempo}}</p>
+      <p><strong>Formas de pago:</strong> {{formas_pago}}</p>
+    </div>
+
+    <div class="footer">
+      Este presupuesto tiene una validez de 30 días desde su emisión. <br>
+      Documento generado automáticamente por Smart Referrals PDF Addon.
+    </div>
   </div>
-
-  <div class="clausulas">
-    <p><strong>Primera.</strong> {{clausula1}}</p>
-    <p><strong>Segunda.</strong> {{clausula2}}</p>
-    <p><strong>Tercera.</strong> {{clausula3}}</p>
-  </div>
-
-  <div class="presupuesto-final">
-    <p><strong>TOTAL A PAGAR:</strong> {{total}}</p>
-    <p><strong>Tiempo estimado de entrega:</strong> {{tiempo}}</p>
-    <p><strong>Formas de pago:</strong> {{formas_pago}}</p>
-  </div>
-
-  <div class="footer">
-    Este presupuesto tiene una validez de 30 días desde su emisión. <br>
-    Documento generado automáticamente por Smart Referrals PDF Addon.
-  </div>
-
 </body>
 </html>
