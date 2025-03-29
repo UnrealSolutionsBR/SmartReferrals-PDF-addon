@@ -42,21 +42,21 @@ class Create_PDF_Action extends Action_Base {
 		$logo_url = SR_PDF_ADDON_URL . 'assets/img/logo.svg';
 		$inter_font = SR_PDF_ADDON_URL . 'assets/fonts/Inter-Medium.ttf';
 		$opensans_regular = SR_PDF_ADDON_URL . 'assets/fonts/OpenSans-Regular.ttf';
-		$opensans_bold = SR_PDF_ADDON_URL . 'OpenSans-Bold.ttf';
+		$opensans_bold = SR_PDF_ADDON_URL . 'assets/fonts/OpenSans-Bold.ttf';
 
 		// 📄 Cargar plantilla
 		$template_path = SR_PDF_ADDON_PATH . 'templates/contrato.html';
 		$data = [
 			'presupuesto'   => $presupuesto,
-			'cliente'       => $cliente,
-			'servicio'      => $servicio,
 			'fecha'         => date('d/m/Y'),
+			'project_manager'           => $fields['project_manager']['value'] ?? '',
+			'project_manager_position'  => $fields['project_manager_position']['value'] ?? '',
+			'client_company'            => $fields['client_company']['value'] ?? '',
+			'client_project_manager'    => $fields['client_project_manager']['value'] ?? '',
+			'service'                   => $fields['service']['value'] ?? '',
 			'clausula1'     => 'La duración del contrato será hasta la completa ejecución del servicio acordado entre ambas partes.',
 			'clausula2'     => 'El cliente deberá realizar un pago inicial del 50% del costo total para comenzar el desarrollo.',
 			'clausula3'     => 'El cliente retiene los derechos de propiedad intelectual del diseño final aprobado.',
-			'total'         => $total,
-			'tiempo'        => '3 días laborales',
-			'formas_pago'   => 'Efectivo, PayPal, Transferencia Bancaria, USDT',
 			'logo_url'      => $logo_url,
 			'inter_font'	=> $inter_font,
 			'opensans_regular'	=> $opensans_regular,

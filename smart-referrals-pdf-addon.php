@@ -26,6 +26,7 @@ if ( file_exists( $autoload ) ) {
 
 // ✅ Incluir helpers personalizados
 require_once SR_PDF_ADDON_PATH . 'includes/helpers.php';
+require_once SR_PDF_ADDON_PATH . 'includes/class-user-extensions.php';
 
 // ✅ Registrar la acción personalizada de Elementor
 add_action( 'plugins_loaded', function () {

@@ -29,7 +29,6 @@
     html {
       margin: 0;
     }
-
     body {
       margin: 0;
       padding: 0;
@@ -37,68 +36,46 @@
       color: #222;
       line-height: 1.6;
     }
-
     .wrapper {
       padding: 20px;
     }
-
-    header {
-      display: flex;
-      align-items: center;
-      margin-bottom: 20px;
-      gap: 20px;
-    }
-
     .logo-img {
       width: 50px;
       height: auto;
+      padding-top: 5px;
     }
-
-    .header-text {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
     .subtitle {
       font-size: 12px;
       color: #555;
     }
-
     h1 {
       text-align: center;
       font-size: 18px;
       margin: 30px 0 10px;
       text-transform: uppercase;
     }
-
     .info {
       margin-top: 10px;
       font-size: 14px;
     }
-
     .clausulas {
       margin-top: 30px;
     }
-
     .clausulas p {
       margin-bottom: 12px;
       font-size: 13px;
       text-align: justify;
     }
-
     .presupuesto-final {
       margin-top: 30px;
       background: #f7f7f7;
       padding: 15px;
       border: 1px solid #ccc;
     }
-
     .presupuesto-final strong {
       font-size: 16px;
       color: #000;
     }
-
     .footer {
       margin-top: 50px;
       padding-top: 10px;
@@ -107,24 +84,83 @@
       text-align: center;
       color: #777;
     }
+    .presupuesto-header {
+      position: absolute;
+      top: 70px;
+      right: 27px;
+      line-height: 1;
+      text-align: right;
+      font-family: 'Inter';
+      font-weight: normal;
+      font-size: 13px;
+    }
+    .presupuesto-header .linea {
+      border-bottom: 1.5px solid #000;
+      padding-bottom: 2px;
+      margin-bottom: 6px;
+      width: max-content;
+    }
+    .resume p{
+      font-family: 'Inter';
+      font-weight: normal;
+      line-height: 0.7;
+      font-size: 14px;
+    }
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 20px;
+    }
+
+    .resume {
+      display: table;
+      width: 100%;
+    }
+    .resume-wrapper {
+      padding: 45px 5px 0 0;
+    }
+    .resume .left,
+    .resume .right {
+      display: table-cell;
+      width: 50%;
+      vertical-align: bottom;
+    }
+    .right {
+      text-align: right;
+    }
+    .divider {
+      border: none;
+      border-top: 1.5px solid #000;
+      margin: 0;
+    }
   </style>
 </head>
 <body>
   <div class="wrapper">
     <header>
-      <img src="{{logo_url}}" class="logo-img" alt="Logo Unreal Solutions">
-      <div class="header-text">
-        <div class="subtitle">Agencia creativa digital - www.unrealsolutions.com.br</div>
+      <div class="header-top">
+        <img src="{{logo_url}}" class="logo-img" alt="Logo Unreal Solutions">
+        <div class="presupuesto-header">
+          <div class="linea">Presupuesto N° {{presupuesto}}</div>
+          <div class="linea">Fecha: {{fecha}}</div>
+        </div>
       </div>
     </header>
-
-    <h1>PRESUPUESTO N° {{presupuesto}}</h1>
-
-    <div class="info">
-      <strong>Cliente:</strong> {{cliente}}<br>
-      <strong>Servicio:</strong> {{servicio}}<br>
-      <strong>Fecha:</strong> {{fecha}}
+    <div class="resume-wrapper">
+    <div class="resume">
+      <div class="left">
+        <p class="project-manager">{{project_manager}}</p>
+        <p class="project-manager-position">{{project_manager_position}}</p>
+      </div>
+      <div class="right">
+        <p class="client-company">{{client_company}}</p>
+        <p class="service">{{service}}</p>
+        <p class="client-project-manager">{{client_project_manager}}</p>
+      </div>
     </div>
+  </div>
+  <hr class="divider">
 
     <div class="clausulas">
       <p><strong>Primera.</strong> {{clausula1}}</p>
