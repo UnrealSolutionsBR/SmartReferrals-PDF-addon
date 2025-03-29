@@ -28,6 +28,8 @@ if ( file_exists( $autoload ) ) {
 require_once SR_PDF_ADDON_PATH . 'includes/helpers.php';
 require_once SR_PDF_ADDON_PATH . 'includes/class-user-extensions.php';
 require_once SR_PDF_ADDON_PATH . 'includes/class-form-dynamic-fields.php';
+require_once SR_PDF_ADDON_PATH . 'includes/class-shortcodes.php';
+new SR_PDF\Shortcodes();
 new SR_PDF\Form_Dynamic_Fields();
 
 // ✅ Registrar la acción personalizada de Elementor
@@ -54,3 +56,13 @@ add_action( 'wp_enqueue_scripts', function () {
 		true
 	);
 });
+add_action('wp_enqueue_scripts', 'sr_pdf_enqueue_scripts');
+function sr_pdf_enqueue_scripts() {
+	wp_enqueue_script(
+		'sr-user-select-sync',
+		plugin_dir_url(__FILE__) . 'assets/js/user-select-sync.js',
+		[],
+		'1.0',
+		true
+	);
+}
