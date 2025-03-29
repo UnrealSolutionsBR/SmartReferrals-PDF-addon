@@ -38,8 +38,11 @@ class Create_PDF_Action extends Action_Base {
 		$servicio = $fields['servicio']['value'] ?? 'Servicio no definido';
 		$total    = $fields['total']['value'] ?? 'USD 0.00';
 
-		// 📸 Logo
+		// 📸 Path a assets
 		$logo_url = SR_PDF_ADDON_URL . 'assets/img/logo.svg';
+		$inter_font = SR_PDF_ADDON_URL . 'assets/fonts/Inter-Medium.ttf';
+		$opensans_regular = SR_PDF_ADDON_URL . 'assets/fonts/OpenSans-Regular.ttf';
+		$opensans_bold = SR_PDF_ADDON_URL . 'OpenSans-Bold.ttf';
 
 		// 📄 Cargar plantilla
 		$template_path = SR_PDF_ADDON_PATH . 'templates/contrato.html';
@@ -55,6 +58,9 @@ class Create_PDF_Action extends Action_Base {
 			'tiempo'        => '3 días laborales',
 			'formas_pago'   => 'Efectivo, PayPal, Transferencia Bancaria, USDT',
 			'logo_url'      => $logo_url,
+			'inter_font'	=> $inter_font,
+			'opensans_regular'	=> $opensans_regular,
+			'opensans_bold'	=> $opensans_bold,
 		];
 		$html = sr_pdf_render_template( $template_path, $data );
 
@@ -80,7 +86,7 @@ class Create_PDF_Action extends Action_Base {
 			$font = $fontMetrics->getFont('DejaVu Sans', 'normal');
 			$size = 10;
 			$width = $fontMetrics->getTextWidth($text, $font, $size);
-			$canvas->text($canvas->get_width() - $width - 20, 30, $text, $font, $size);
+			$canvas->text($canvas->get_width() - $width - 20, 20, $text, $font, $size);
 		});
 
 		// 💾 Guardar archivo
