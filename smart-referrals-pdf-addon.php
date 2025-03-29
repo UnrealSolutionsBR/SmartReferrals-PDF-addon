@@ -27,6 +27,8 @@ if ( file_exists( $autoload ) ) {
 // ✅ Incluir helpers personalizados
 require_once SR_PDF_ADDON_PATH . 'includes/helpers.php';
 require_once SR_PDF_ADDON_PATH . 'includes/class-user-extensions.php';
+require_once SR_PDF_ADDON_PATH . 'includes/class-form-dynamic-fields.php';
+new SR_PDF\Form_Dynamic_Fields();
 
 // ✅ Registrar la acción personalizada de Elementor
 add_action( 'plugins_loaded', function () {
