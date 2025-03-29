@@ -65,11 +65,10 @@ class Create_PDF_Action extends Action_Base {
 		$options->set('isHtml5ParserEnabled', true);
 		$options->set('isPhpEnabled', false);
 
-		// 🧱 Tamaño sin márgenes
-		$paper_width = 595.28; // A4 width in pt
-		$paper_height = 841.89; // A4 height in pt
 		$dompdf = new Dompdf($options);
-		$dompdf->setPaper([0, 0, $paper_width, $paper_height], 'portrait');
+
+		// ✅ Usamos tamaño estándar A4
+		$dompdf->setPaper('A4', 'portrait');
 
 		$dompdf->loadHtml($html);
 		$dompdf->render();
@@ -91,7 +90,7 @@ class Create_PDF_Action extends Action_Base {
 		$pdf_url = trailingslashit($upload_dir['baseurl']) . $filename;
 		file_put_contents($upload_path, $dompdf->output());
 
-		// 📤 Respuesta
+		// 📤 Respuesta AJAX
 		$ajax_handler->add_response_data('meta', [
 			'generated_pdf_url' => $pdf_url
 		]);
